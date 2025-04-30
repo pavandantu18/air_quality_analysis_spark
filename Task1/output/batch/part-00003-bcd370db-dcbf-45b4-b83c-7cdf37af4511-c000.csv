@@ -1,0 +1,6 @@
+location_id,sensors_id,location,datetime,lat,lon,parameter,units,value
+['1235978','7973146','Charlotte-1224494','2025-04-16T09:00:00-04:00','35.2271','-80.8431','um003','particles/cm³','385.25']
+['1235978','7973146','Charlotte-1224494','2025-04-16T13:00:00-04:00','35.2271','-80.8431','um003','particles/cm³','469.125']
+['1235978','7973146','Charlotte-1224494','2025-04-16T17:00:00-04:00','35.2271','-80.8431','um003','particles/cm³','727.125']
+['1235978','7973146','Charlotte-1224494','2025-04-16T21:00:00-04:00','35.2271','-80.8431','um003','particles/cm³','772.5']
+['location_id','sensors_id','location','datetime','lat','lon','parameter','units','value']

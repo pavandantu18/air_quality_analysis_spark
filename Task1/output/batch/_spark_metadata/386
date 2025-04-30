@@ -1,0 +1,5 @@
+v1
+{"path":"file:///workspaces/air_quality_analysis_spark/output/batch/part-00000-699fcb5e-546e-461d-86b6-318dea1eb10b-c000.csv","size":670,"isDir":false,"modificationTime":1745992730152,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///workspaces/air_quality_analysis_spark/output/batch/part-00001-c9e514ae-4852-479a-9f83-1f9090fc6531-c000.csv","size":667,"isDir":false,"modificationTime":1745992730153,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///workspaces/air_quality_analysis_spark/output/batch/part-00002-d6b66da6-fd3e-4afd-bd68-2d0840897bd9-c000.csv","size":681,"isDir":false,"modificationTime":1745992730151,"blockReplication":1,"blockSize":33554432,"action":"add"}
+{"path":"file:///workspaces/air_quality_analysis_spark/output/batch/part-00003-5c1a2bb5-e7d9-4d04-8979-07776769e60d-c000.csv","size":540,"isDir":false,"modificationTime":1745992730150,"blockReplication":1,"blockSize":33554432,"action":"add"}
